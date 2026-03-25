@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bookstore Inventory</title>
+</head>
+
+<body>
+<!--
+  th:replace="~{folder/filename :: fragmentName}"
+  This tells Thymeleaf: "Go to fragments/navbar.html, find the fragment named 'header',
+  and completely replace this <div> with that code!"
+-->
+<div th:replace="~{fragments/navbar :: header}"></div>
+
+<h1>Bookstore Inventory System</h1>
+<!-- ... the rest of the file ... -->
+
+
+<!-- Search Form matching our Controller's /search mapping -->
+<form th:action="@{/inventory/search}" method="get">
+    <input type="text" name="name" placeholder="Search product name..." />
+    <button type="submit">Search</button>
+</form>
+<br/>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the 'products' model attribute we packed in Java -->
+    <tr th:each="item : ${products}">
+        <td th:text="${item.id}">1</td>
+        <td th:text="${item.name}">Placeholder Name</td>
+        <td th:text="${'$' + item.price}">$0.00</td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<a th:href="@{/inventory}">Clear Search / View All Inventory</a>
+</body>
+</html>

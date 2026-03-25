@@ -20,6 +20,6 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     // --------------------------------------------------------
     List<ProductEntity> findByNameContainingIgnoreCase(String name);
 
-    // We can also search specifically by author since BookEntity inherits from ProductEntity
-    List<ProductEntity> findByAuthorContainingIgnoreCase(String author);
+//    // We can also search specifically by author since BookEntity inherits from ProductEntity
+//    List<ProductEntity> findByAuthorContainingIgnoreCase(String author);
 }

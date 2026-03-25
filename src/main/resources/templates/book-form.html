@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Form</title>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: header}"></div>
+
+<h1 th:text="${book.id == null} ? 'Add New Book' : 'Edit Book'">Add/Edit Book</h1>
+
+<!--
+  th:action points to our @PostMapping("/save") route.
+  th:object binds this entire form to the "book" object we put in the Model suitcase.
+-->
+<form th:action="@{/books/save}" th:object="${book}" method="post">
+
+    <!-- HIDDEN INPUT: Crucial for Updates!
+         If we don't include the ID, Spring will think this is a brand new book and create a duplicate! -->
+    <input type="hidden" th:field="*{id}" />
+
+    <label>Title:</label><br/>
+    <!-- th:field="*{title}" links this input directly to book.setTitle() and book.getTitle() -->
+    <input type="text" th:field="*{title}" required />
+    <br/><br/>
+
+    <label>Author:</label><br/>
+    <input type="text" th:field="*{author}" required />
+    <br/><br/>
+
+    <label>Price:</label><br/>
+    <input type="number" step="0.01" th:field="*{price}" required />
+    <br/><br/>
+
+    <button type="submit">Save Book</button>
+</form>
+
+<br/>
+<a th:href="@{/books}">Cancel and go back</a>
+
+</body>
+</html>
+

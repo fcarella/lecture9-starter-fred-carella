@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- We don't actually need a head here, but it's good practice for valid HTML snippets -->
+</head>
+<body>
+
+<!--
+  th:fragment="header" defines this specific <nav> block as a reusable component named "header".
+  Everything inside this <nav> block can be injected into other pages!
+-->
+<nav th:fragment="header" style="background-color: #333; padding: 10px; margin-bottom: 20px;">
+
+    <!-- Style the links so they look like a menu -->
+    <style>
+        .nav-link { color: white; text-decoration: none; margin-right: 15px; font-weight: bold; font-family: sans-serif; }
+        .nav-link:hover { text-decoration: underline; color: #4CAF50; }
+    </style>
+
+    <!-- Our Global Links -->
+    <a class="nav-link" th:href="@{/inventory}">🛒 Main Store Inventory</a>
+    <a class="nav-link" th:href="@{/books}">📚 Manage Books</a>
+
+    <!-- Anticipating future CRUD controllers! -->
+    <a class="nav-link" th:href="@{#}" style="color: gray;" title="Coming Soon!">📰 Manage Magazines</a>
+    <a class="nav-link" th:href="@{#}" style="color: gray;" title="Coming Soon!">🎟️ Manage Tickets</a>
+    <a class="nav-link" th:href="@{#}" style="color: gray;" title="Coming Soon!">💿 Manage CDs</a>
+
+</nav>
+
+</body>
+</html>
+
